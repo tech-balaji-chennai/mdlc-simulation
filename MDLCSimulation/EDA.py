@@ -33,23 +33,24 @@ def EDA(data):
                 plt.xlabel(f"{data.columns[0]} (years)")
                 plt.ylabel(f"{data.columns[1]} (₹)")
                 plt.title(f"Nature of {data.columns[0]} and {data.columns[1]}")
+                return plt
             
             #b) saving histogram
-            def save_histogram():
+            def save_histogram(plt):
                 
                 #saving matplotlib plot
                 plt.savefig('salary_prediction_histogram.png', format = 'png', dpi = 500, transparent = False)
             
             #c) displaying histogram
-            def show_histogram():
+            def show_histogram(plt):
                 plt.gcf().canvas.manager.set_window_title("Histogram")
                 plt.show()
             
             #executing sub-steps of scatter plot exploration
             def execute_all_histogram_explore(data):
-                create_histogram(data)
-                save_histogram()
-                show_histogram()
+                plt = create_histogram(data)
+                save_histogram(plt)
+                show_histogram(plt)
             
             execute_all_histogram_explore(data)
         
@@ -68,23 +69,25 @@ def EDA(data):
                 axes[0].set_title(f"Box plot of {data.columns[0]}")
                 sns.boxplot(y = data[data.columns[1]], ax = axes[1])
                 axes[1].set_title(f"Box plot of {data.columns[1]}")
+                
+                return plt
             
             #b) saving box plot
-            def save_box_plot():
+            def save_box_plot(plt):
                 
                 #saving matplotlib plot
                 plt.savefig('salary_prediction_boxplot.png', format = 'png', dpi = 500, transparent = False)
             
             #c) displaying box plot
-            def show_box_plot():
+            def show_box_plot(plt):
                 plt.gcf().canvas.manager.set_window_title("Box Plot")
                 plt.show()
             
             #executing sub-steps of box plot exploration
             def execute_all_box_plot_explore(data):
-                create_box_plot(data)
-                save_box_plot()
-                show_box_plot()
+                plt = create_box_plot(data)
+                save_box_plot(plt)
+                show_box_plot(plt)
             
             execute_all_box_plot_explore(data)
         
@@ -94,8 +97,7 @@ def EDA(data):
             #a) creating scatter plot
             def create_scatter_plot(data):
                 #a) using plotly
-                figure = px.scatter(data_frame = data, x = data.columns[0], y = data.columns[1], size = data.columns[1], trendline = 'ols')
-                figure.show()
+                plotly_figure = px.scatter(data_frame = data, x = data.columns[0], y = data.columns[1], size = data.columns[1], trendline = 'ols')
                 
                 #b) using seaborn and matplotlib
                 plt.figure(figsize = (7,5))
@@ -106,27 +108,30 @@ def EDA(data):
                 plt.title(f"Relationship between {data.columns[0]} and {data.columns[1]}")
                 plt.legend(labels = [f"{data.columns[0]} (years)",f"{data.columns[1]} (₹)"], fontsize = 12,
                            title = 'Legend', loc = 'upper left', frameon = True, shadow = True)
+                
+                return plotly_figure, plt
             
             #b) saving scatter plot
-            def save_scatter_plot(figure):
+            def save_scatter_plot(plotly_figure, plt):
                 
                 #saving plotly figure
-                if figure:
-                    figure.write_html("salary_prediction_scatterplot.html")
+                if plotly_figure is not None:
+                    plotly_figure.write_html("salary_prediction_scatterplot.html")
                 
                 #saving matplotlib plot
                 plt.savefig('salary_prediction_scatterplot.png', format = 'png', dpi = 500, transparent = False)
             
             #c) displaying scatter plot
-            def show_scatter_plot():
+            def show_scatter_plot(plotly_figure, plt):
+                plotly_figure.show()
                 plt.gcf().canvas.manager.set_window_title("Scatter Plot")
                 plt.show()
             
             #executing sub-steps of scatter plot exploration
             def execute_all_scatter_explore(data):
-                figure = create_scatter_plot(data)
-                save_scatter_plot(figure)
-                show_scatter_plot()
+                plotly_figure, plt = create_scatter_plot(data)
+                save_scatter_plot(plotly_figure, plt)
+                show_scatter_plot(plotly_figure, plt)
             
             execute_all_scatter_explore(data)
         
@@ -139,23 +144,24 @@ def EDA(data):
                 plt.figure(figsize = (5,4))
                 sns.heatmap(correlation_matrix, annot = True, cmap = 'coolwarm', fmt = '.2f', linewidths = 1, linecolor = 'black', vmin = 0, vmax = 1)
                 plt.title(f"Correlation heatmap for {data.columns[0]} and {data.columns[1]}")
+                return plt
             
             #b) saving correlation matrix
-            def save_correlation_matrix():
+            def save_correlation_matrix(plt):
                 
                 #saving matplotlib plot
                 plt.savefig('salary_prediction_correlation_matrix.png', format = 'png', dpi = 500, transparent = False)
             
             #c) displaying correlation matrix
-            def show_correlation_matrix():
+            def show_correlation_matrix(plt):
                 plt.gcf().canvas.manager.set_window_title("Correlation Matrix")
                 plt.show()
             
             #executing sub-steps of scatter plot exploration
             def execute_all_corr_mat_explore(data):
-                create_correlation_matrix(data)
-                save_correlation_matrix()
-                show_correlation_matrix()
+                plt = create_correlation_matrix(data)
+                save_correlation_matrix(plt)
+                show_correlation_matrix(plt)
             
             execute_all_corr_mat_explore(data)
         
