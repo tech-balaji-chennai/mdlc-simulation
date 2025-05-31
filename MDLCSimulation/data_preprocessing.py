@@ -135,10 +135,26 @@ def data_preprocessing(file_path='salary_data.csv'):
             except Exception as e:
                 return None
         
-        #c) data debugging - fixing errors
+        #c) data debugging - fixing errors like renaming column name, converting appropriate datatypes to ensure correct data formats for analysis 
         def debug_data(data):
             try:
+                
+                #renaming column name
                 data = data.rename(columns = {'YearsExperience': 'Experience'})
+                
+                #To display datatypes of all columns of dataframe
+                print(data.dtypes)
+                
+                #To display datatypes of specified column(s) of dataframe
+                print(data['Experience'].dtypes)
+                
+                #converting column data type to any data type using astype() method
+                #Syntax: data[column_name] = data[column_name].astype(int)
+                #removing non-numeric values and convert to integer datatype by forcing invalid values to NaN instead of raising errors using to_numeric() method
+                #finally NaN values are filled by 0 using fillna() method
+                #Syntax: data[column_name] =  pd.to_numeric(data[column_name], errors='coerce')..fillna(0).astype(numeric_datatype)
+                #where numeric_datatype = int (or) float
+                
                 return data
             except Exception as e:
                 return None

@@ -8,7 +8,7 @@ if __name__ == '__main__':
     
     #Initializing variables that are needed during steps 3 to 11 to empty
     data_name, data, x_train, x_val, x_test, y_train, y_val, y_test, model = None, None, None, None, None, None, None, None, None
-    ml_lifecycle = "\nMDLC (Model Development Life Cycle) - Steps:\n1) Problem Definition\n2) Design\n3) Data Collection\n4) Data Preprocessing\n" \
+    ml_lifecycle = "\nMDLC (Model Development Life Cycle) - Steps:\n1) Problem Definition\n2) Design Solution\n3) Data Collection\n4) Data Preprocessing\n" \
                    "5) Exploratory Data Analysis (EDA)\n6) Feature Engineering\n7) ML Model Selection\n8) ML Model Training\n9) ML Model Tuning\n" \
                    "10) ML Model Evaluation\n11) ML Model Deployment\n12) ML Model Monitoring And Maintenance\n13) Exit\n\n"
     

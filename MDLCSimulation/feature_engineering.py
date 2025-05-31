@@ -9,6 +9,7 @@ def feature_engineering(x_train, x_val, x_test):
     
     #i) feature creation - creating new features from existing features
     def create_feature(x_train, x_val):
+        
         #a) data augmentation - augmenting (or) expanding features by creating variations (like image rotation, text paraphrasing) with modifying them
         def augment_feature(x_train, x_val):
             
